@@ -1,0 +1,38 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+next-frontend/node_modules
+next-frontend/.pnp
+next-frontend/.pnp.js
+
+# testing
+next-frontend/coverage
+
+# next.js
+next-frontend/.next/
+next-frontend/out/
+
+# production
+next-frontend/build
+
+# misc
+next-frontend/.DS_Store
+next-frontend/*.pem
+
+# debug
+next-frontend/npm-debug.log*
+next-frontend/yarn-debug.log*
+next-frontend/yarn-error.log*
+
+# local env files
+next-frontend/.env.local
+next-frontend/.env.development.local
+next-frontend/.env.test.local
+next-frontend/.env.production.local
+
+# vercel
+next-frontend/.vercel
+
+# Backend
+
+node_modules
