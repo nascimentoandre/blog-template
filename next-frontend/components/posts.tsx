@@ -1,31 +1,25 @@
 import React, { useState, useEffect } from "react"
+//import { InferGetServerSidePropsType } from 'next'
+import { GetServerSideProps } from 'next'
 
-interface Post {
-  title: string,
-  text: string,
-  category: string
+interface Kanye {
+  quote: string
 }
-const PlotPost: React.FC = () => {
-  // Change this to getStaticProps later
-  const [posts, setPosts] = useState<Post>({
-    title: '',
-    text: '',
-    category: '',
-  });
 
-  const fetchPosts = async () => {
-    let res = await fetch("/posts")
-    if (res.ok) return res.json().then(p => setPosts(p)).catch(err => console.log(err))
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const req = await fetch("https://api.kanye.rest/")
+  const posts: Kanye = await req.json()
+
+  return {
+    props: {posts}
   }
+}
 
-  useEffect(() => {
-    fetchPosts();
-  }, [])
-
+function PlotPost({ posts }) {
+  console.log(posts)
   return (
     <div>
       <p>Hold on</p>
-      <p>{posts.title}</p>
     </div>
   )
 }
