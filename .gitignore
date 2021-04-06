@@ -29,6 +29,7 @@ next-frontend/.env.local
 next-frontend/.env.development.local
 next-frontend/.env.test.local
 next-frontend/.env.production.local
+.env
 
 # vercel
 next-frontend/.vercel
