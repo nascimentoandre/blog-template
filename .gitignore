@@ -37,3 +37,4 @@ next-frontend/.vercel
 # Backend
 
 node_modules
+db/bla.ts
