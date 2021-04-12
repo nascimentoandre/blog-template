@@ -1,11 +1,19 @@
 import { Request, Response } from "express";
+import pool from "../db/index";
 
-export const posts = (req: Request, res: Response) => {
-  res.json({
-    "title": "My title",
-    "text":
-      "Integer lorem tortor, convallis non diam quis, iaculis pharetra nisl. Aenean vitae tortor libero. Maecenas pretium magna sed turpis congue, non mattis leo eleifend. Vestibulum hendrerit eu purus id cursus. Aliquam maximus orci dapibus rhoncus hendrerit. Sed pretium cursus lorem, vitae euismod neque blandit molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque scelerisque orci eget urna lobortis interdum. Donec scelerisque, felis ornare porta tincidunt, ligula arcu blandit purus, eu porta quam justo ut ipsum. Proin suscipit a ex eu porttitor. Cras maximus maximus varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam libero diam, lobortis quis nisl sed, interdum consectetur nisl. Vivamus in libero ac metus condimentum pharetra a eu lectus. Nullam feugiat, arcu vel lobortis cursus, augue nulla euismod odio, non ornare nisi arcu et enim.",
-    "category": "test",
-  });
+export const getAllPosts = async (req: Request, res: Response) => {
+  try {
+    const posts = await pool.query("select * from posts");
+    res.json(posts.rows);
+  } catch (err) {
+    console.error(err);
+  }
 };
+
+//export const getAllPosts = (req: Request, res: Response) => {
+//  res.json({
+//    title: "post 1",
+//    content: "jfal als dla aslkfa las ldfjald açdfka",
+//  });
+//}
 
