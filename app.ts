@@ -2,6 +2,7 @@ import express from "express";
 import { Request, Response, NextFunction } from "express";
 import createError from "http-errors";
 import logger from "morgan";
+import cors from "cors";
 
 import indexRouter from "./routes/index";
 import postsRouter from "./routes/posts";
@@ -9,6 +10,7 @@ import postsRouter from "./routes/posts";
 let app = express();
 
 // middleware
+app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
