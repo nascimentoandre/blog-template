@@ -6,19 +6,9 @@ import Navbar from '../components/navbar'
 import { HomeContainer, PostFlexbox } from '../styles/pages/home'
 import Footer from '../components/footer'
 
-//export const getServerSideProps: GetServerSideProps = async () => {
-  ////const res = await fetch("http://localhost:3001/posts")
-  //const res = await api.get("/posts")
-  //const posts = res.data
+function Home({ posts }) {
+  if (!posts) return <div><p>Loading...</p></div>
 
-  //return {
-    //props: {
-      //posts,
-    //}
-  //}
-//}
-
-function Home() {
   return (
     <div>
       <Head>
@@ -28,17 +18,38 @@ function Home() {
       <HomeContainer>
         <h1>Latest posts</h1>
         <PostFlexbox>
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
+          {posts.map(post => (
+          <Post
+            key={post.id}
+            title={post.title}
+            description={post.description}
+            content={post.content}
+            createdAt={post.created_at}
+            tags={post.tags} />
+          ))}
         </PostFlexbox>
       </HomeContainer>
       <Footer />
     </div>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  ////const res = await fetch("http://localhost:3001/posts")
+  try {
+    const res = await api.get("/posts")
+    const posts = await res.data
+    return {
+      props: {
+        posts,
+      }
+    }
+  } catch (err) {
+    console.error(err.message)
+    return {
+      props: {}
+    }
+  }
 }
 
 export default Home
