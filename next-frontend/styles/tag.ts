@@ -5,9 +5,14 @@ export const TagStyle = styled.div`
   border: 1px solid black;
   font-size: 14px;
   border-radius: 15px;
-  width: 80px;
+  width: 90px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 0.6rem;
+
+  p {
+    color: ${props => props.theme.colors.bar}
+  }
 
 `
