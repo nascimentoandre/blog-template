@@ -21,6 +21,7 @@ function Home({ posts }) {
           {posts.map(post => (
           <Post
             key={post.id}
+            id={post.id}
             title={post.title}
             description={post.description}
             content={post.content}
@@ -35,7 +36,6 @@ function Home({ posts }) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  ////const res = await fetch("http://localhost:3001/posts")
   try {
     const res = await api.get("/posts")
     const posts = await res.data
