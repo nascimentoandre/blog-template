@@ -25,6 +25,10 @@ export const PostStyle = styled.div`
     font-size: 1.8rem;
   }
 
+  h1 a {
+    color: black;
+  }
+
   .date {
     color: ${props => props.theme.colors.date};
     font-size: 0.8rem;
