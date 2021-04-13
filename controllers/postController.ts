@@ -10,10 +10,15 @@ export const getAllPosts = async (req: Request, res: Response) => {
   }
 };
 
-//export const getAllPosts = (req: Request, res: Response) => {
-//  res.json({
-//    title: "post 1",
-//    content: "jfal als dla aslkfa las ldfjald açdfka",
-//  });
-//}
+export const getSinglePost = async (req: Request, res: Response) => {
+  const pid = req.params.id;
+  console.log(pid);
+
+  try {
+    const post = await pool.query("select * from posts where id = $1", [pid]);
+    res.json(post.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+};
 
