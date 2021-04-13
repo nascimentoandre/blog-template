@@ -30,7 +30,7 @@ export default class MyDocument extends Document {
 
   render(): JSX.Element {
     return (
-      <Html lang="pt">
+      <Html lang="en">
         <Head>
           <meta charSet="UTF-8" />
           <link rel="icon" href="/favicon.png" />
@@ -39,9 +39,6 @@ export default class MyDocument extends Document {
           <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
           <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet"></link>
           <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"></link>
-          
-          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA    2Fd33n5dQ8lWUE00s/" crossOrigin="anonymous" />
-
         </Head>
         <body>
           <Main />
