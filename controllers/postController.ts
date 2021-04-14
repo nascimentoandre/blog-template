@@ -12,7 +12,6 @@ export const getAllPosts = async (req: Request, res: Response) => {
 
 export const getSinglePost = async (req: Request, res: Response) => {
   const pid = req.params.id;
-  console.log(pid);
 
   try {
     const post = await pool.query("select * from posts where id = $1", [pid]);
