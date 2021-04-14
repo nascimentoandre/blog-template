@@ -4,7 +4,7 @@ import Footer from "../../components/footer"
 import { PostContainer } from "../../styles/pages/post"
 import { GetServerSideProps } from "next"
 import api from "../../services/api"
-import Link from "next/link"
+import Btn1 from "../../components/confirmBtn"
 
 function printPost({ post }) {
   let d = new Date(post.created_at)
@@ -17,7 +17,7 @@ function printPost({ post }) {
         <p className="date">{d.toLocaleDateString()}, {d.toLocaleTimeString()}</p>
         <p className="content">{post.content}</p>
         <div style={{width: "100%", textAlign: "center"}}>
-          <button className="return"><Link href="/">Return to the main page</Link></button>
+          <Btn1 text="Return to the main page" link={true} to="/" />
         </div>
       </PostContainer>
       <Footer />
