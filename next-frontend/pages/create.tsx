@@ -1,8 +1,12 @@
 import Head from "next/head"
 import { CreateContainer } from "../styles/pages/create"
+import Navbar from "../components/navbar"
+import Footer from "../components/footer"
 
 const Create: React.FC = () => {
   return (
+    <>
+    <Navbar />
     <CreateContainer>
       <h1>Create a new post</h1>
       <label>Write a title</label>
@@ -17,6 +21,8 @@ const Create: React.FC = () => {
       <br />
       <input />
     </CreateContainer>
+    <Footer />
+    </>
   )
 }
 
