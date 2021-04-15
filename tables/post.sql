@@ -1,8 +1,8 @@
 create table posts (
   id bigserial not null primary key,
-  title varchar(100) not null,
-  description varchar(150),
-  content text default '...',
-  tags text[],
+  title varchar(70) not null,
+  descript varchar(200),
+  content text,
+  tags varchar(20)[],
   created_at timestamp default now()
 )
