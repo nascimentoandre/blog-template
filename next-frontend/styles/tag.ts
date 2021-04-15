@@ -5,7 +5,7 @@ export const TagStyle = styled.div`
   border: 1px solid black;
   font-size: 14px;
   border-radius: 15px;
-  width: 90px;
+  padding: 0.2rem 0.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
