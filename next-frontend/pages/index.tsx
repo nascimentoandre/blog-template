@@ -23,7 +23,7 @@ function Home({ posts }) {
             key={post.id}
             id={post.id}
             title={post.title}
-            description={post.description}
+            description={post.descript}
             content={post.content}
             createdAt={post.created_at}
             tags={post.tags} />
