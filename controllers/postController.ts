@@ -21,3 +21,24 @@ export const getSinglePost = async (req: Request, res: Response) => {
   }
 };
 
+export const createPost = async (req: Request, res: Response) => {
+  const { postTitle, postDescription, postContent, postTags } = req.body;
+  let tagsStr = "";
+
+  if (postTags) {
+    let tagsArr = postTags.split(";");
+    tagsStr += "{";
+    tagsArr.map((tag: string) => tagsStr+=tag+", ")
+    tagsStr = tagsStr.slice(0, tagsStr.length-2)
+    tagsStr += "}";
+  } else tagsStr = "{}"
+
+  try {
+    const newPost = await pool.query("insert into posts (title, descript, content, tags) values ($1, $2, $3, $4)", 
+    [postTitle, postDescription, postContent, tagsStr]);
+  } catch (err) {
+    res.send(err.message);
+  } finally {
+    res.send("Finished");
+  }
+}
