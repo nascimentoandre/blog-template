@@ -1,5 +1,11 @@
 import { Request, Response } from "express";
 import pool from "../db/index";
+import slugify from "slugify"
+import marked from "marked"
+import { JSDOM } from "jsdom";
+const createDomPurify = require("dompurify");
+
+
 
 export const getAllPosts = async (req: Request, res: Response) => {
   try {
@@ -23,8 +29,21 @@ export const getSinglePost = async (req: Request, res: Response) => {
 
 export const createPost = async (req: Request, res: Response) => {
   const { postTitle, postDescription, postContent, postTags } = req.body;
-  let tagsStr = "";
 
+  // slugifying the title
+  const slug = slugify(postTitle, { lower: true, strict: true })
+
+  // creating the sanitized HTML
+  const window = new JSDOM('').window;
+  const DOMPurify = createDomPurify(window);
+  let sanitizedHTML = ''
+
+  if (postContent) {
+    sanitizedHTML = DOMPurify.sanitize(marked(postContent));
+  }
+
+  // formatting tags to appropriate format for postgresql array
+  let tagsStr = "";
   if (postTags) {
     let tagsArr = postTags.split(";");
     tagsStr += "{";
@@ -34,8 +53,8 @@ export const createPost = async (req: Request, res: Response) => {
   } else tagsStr = "{}"
 
   try {
-    const newPost = await pool.query("insert into posts (title, descript, content, tags) values ($1, $2, $3, $4)", 
-    [postTitle, postDescription, postContent, tagsStr]);
+    const newPost = await pool.query("insert into posts (title, slug, descript, content, sanitized_html, tags) values ($1, $2, $3, $4, $5, $6)", 
+    [postTitle, slug, postDescription, postContent, sanitizedHTML, tagsStr]);
   } catch (err) {
     res.send(err.message);
   } finally {
