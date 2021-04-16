@@ -5,6 +5,7 @@ import { PostContainer } from "../../styles/pages/post"
 import { GetServerSideProps } from "next"
 import api from "../../services/api"
 import Btn1 from "../../components/confirmBtn"
+import ReactHtmlParser from "react-html-parser"
 
 function printPost({ post }) {
   let d = new Date(post.created_at)
@@ -15,7 +16,7 @@ function printPost({ post }) {
       <PostContainer>
         <h1>{post.title}</h1>
         <p className="date">{d.toLocaleDateString()}, {d.toLocaleTimeString()}</p>
-        <p className="content">{post.content}</p>
+        {ReactHtmlParser(post.sanitized_html)} 
         <div style={{width: "100%", textAlign: "center"}}>
           <Btn1 text="Return to the main page" link={true} to="/" />
         </div>
