@@ -7,10 +7,6 @@ export const PostContainer = styled.div`
     font-size: 2.5rem;
   }
 
-  .content {
-    font-size: 1.2rem;
-  }
-
   .date {
     color: ${props => props.theme.colors.date};
     font-size: 1rem;
