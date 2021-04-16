@@ -3,7 +3,7 @@ import pool from "../db/index";
 
 export const getAllPosts = async (req: Request, res: Response) => {
   try {
-    const posts = await pool.query("select * from posts");
+    const posts = await pool.query("select * from posts order by created_at desc");
     res.json(posts.rows);
   } catch (err) {
     console.error(err);
