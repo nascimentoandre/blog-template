@@ -5,8 +5,6 @@ import marked from "marked"
 import { JSDOM } from "jsdom";
 const createDomPurify = require("dompurify");
 
-
-
 export const getAllPosts = async (req: Request, res: Response) => {
   try {
     const posts = await pool.query("select * from posts order by created_at desc");
@@ -59,5 +57,16 @@ export const createPost = async (req: Request, res: Response) => {
     res.send(err.message);
   } finally {
     res.send("Finished");
+  }
+}
+
+export const deletePost = async (req: Request, res: Response) => {
+  const pid = req.params.id;
+
+  try {
+    const delPost = await pool.query("delete from posts where id=$1", [pid]);
+    res.send("Sucessfully deleted the post.")
+  } catch (err) {
+    console.error(err.message);
   }
 }
