@@ -5,7 +5,7 @@ import { useRouter } from "next/router"
 import { CreateContainer } from "../styles/pages/create"
 import Navbar from "../components/navbar"
 import Footer from "../components/footer"
-import Btn1 from "../components/confirmBtn"
+import Btn1 from "../components/buttons"
 import api from "../services/api"
 
 const Create: React.FC = () => {

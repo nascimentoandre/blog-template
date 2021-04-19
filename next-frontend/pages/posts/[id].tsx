@@ -4,7 +4,7 @@ import Footer from "../../components/footer"
 import { PostContainer } from "../../styles/pages/post"
 import { GetServerSideProps } from "next"
 import api from "../../services/api"
-import Btn1 from "../../components/confirmBtn"
+import Btn1 from "../../components/buttons"
 import ReactHtmlParser from "react-html-parser"
 
 function printPost({ post }) {
