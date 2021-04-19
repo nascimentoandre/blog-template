@@ -1,10 +1,11 @@
+import * as React from 'react'
 import Head from "next/head"
 import Navbar from "../../components/navbar"
 import Footer from "../../components/footer"
 import { PostContainer } from "../../styles/pages/post"
 import { GetServerSideProps } from "next"
 import api from "../../services/api"
-import Btn1 from "../../components/buttons"
+import { Btn1, EditBtn, DeleteBtn } from "../../components/buttons"
 import ReactHtmlParser from "react-html-parser"
 
 function printPost({ post }) {
@@ -17,6 +18,10 @@ function printPost({ post }) {
         <h1>{post.title}</h1>
         <p className="date">{d.toLocaleDateString()}, {d.toLocaleTimeString()}</p>
         {ReactHtmlParser(post.sanitized_html)} 
+        <div style={{width: "100%", textAlign: "center", marginBottom: "1rem"}}>
+          <DeleteBtn />
+          <EditBtn />
+        </div>
         <div style={{width: "100%", textAlign: "center"}}>
           <Btn1 text="Return to the main page" link={true} to="/" />
         </div>
