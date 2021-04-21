@@ -19,7 +19,7 @@ function printPost({ post }) {
         <p className="date">{d.toLocaleDateString()}, {d.toLocaleTimeString()}</p>
         {ReactHtmlParser(post.sanitized_html)} 
         <div style={{width: "100%", textAlign: "center", marginBottom: "1rem"}}>
-          <DeleteBtn />
+          <DeleteBtn id={post.id}/>
           <EditBtn />
         </div>
         <div style={{width: "100%", textAlign: "center"}}>
