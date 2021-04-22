@@ -21,8 +21,8 @@ function Home({ posts }) {
           {posts.map(post => (
           <Post
             key={post.id}
-            id={post.id}
             title={post.title}
+            slug={post.slug}
             description={post.descript}
             content={post.content}
             createdAt={post.created_at}
