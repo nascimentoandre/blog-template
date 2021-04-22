@@ -15,10 +15,10 @@ export const getAllPosts = async (req: Request, res: Response) => {
 };
 
 export const getSinglePost = async (req: Request, res: Response) => {
-  const pid = req.params.id;
+  const pslug = req.params.slug;
 
   try {
-    const post = await pool.query("select * from posts where id = $1", [pid]);
+    const post = await pool.query("select * from posts where slug = $1", [pslug]);
     res.json(post.rows);
   } catch (err) {
     console.error(err.message);
@@ -64,9 +64,10 @@ export const deletePost = async (req: Request, res: Response) => {
   const pid = req.params.id;
 
   try {
-    const delPost = await pool.query("delete from posts where id=$1", [pid]);
-    res.send("Sucessfully deleted the post.")
+    const delPost = await pool.query("delete from posts where id = $1", [pid]);
   } catch (err) {
     console.error(err.message);
+  } finally {
+    res.send("Finished.")
   }
 }
