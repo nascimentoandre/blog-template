@@ -4,7 +4,7 @@ import { createPost, deletePost, getAllPosts, getSinglePost } from "../controlle
 const router = express.Router();
 
 router.get("/", getAllPosts);
-router.get("/:id", getSinglePost);
+router.get("/:slug", getSinglePost);
 router.post("/new", createPost);
 router.delete("/delete/:id", deletePost);
 
